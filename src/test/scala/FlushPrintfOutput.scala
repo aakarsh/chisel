@@ -93,6 +93,8 @@ class FlushPrintfOutput extends TestSuite {
           step(1)
           expectedOutputs += m.counterString.format(i.toFloat)
         }
+        // Wait for any delayed output to accumulate
+        Thread.sleep(200)
         assertTrue("Not enough printf outputs", printfs.length == expectedOutputs.length)
         (printfs zip expectedOutputs) foreach {case (printf, expected) =>
           assertTrue("incorrect output - %s".format(printf),
